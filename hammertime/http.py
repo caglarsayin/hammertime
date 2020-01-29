@@ -17,7 +17,10 @@
 
 
 from copy import copy
-
+DEFAULT_USERAGENT = {
+            "User-Agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
+        }
 
 class Entry:
 
@@ -45,6 +48,8 @@ class Request:
         self.method = method
         self.url = url
         self.headers = headers or {}
+        if "User-Agent" not in self.headers:
+            self.headers.update(DEFAULT_USERAGENT)
 
     def __hash__(self):
         return hash(self.__dict__)
